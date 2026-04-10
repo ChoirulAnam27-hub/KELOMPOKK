@@ -12,7 +12,7 @@ const customerNameInput = document.getElementById('customerName');
 const confirmBtn = document.getElementById('confirmBtn');
 const cancelBtn = document.getElementById('cancelBtn');
 let currentBookingSlot = null; 
-let bookings = {}; // Sekarang menampung data dari Database
+let bookings = {}; 
 
 function showModal(time) {
     currentBookingSlot = time;
@@ -34,9 +34,9 @@ function hideModal() {
  */
 async function loadBookings() {
     try {
-        const response = await fetch('ambil_data.php'); // Panggil PHP
-        bookings = await response.json(); // Simpan hasil ke variabel bookings
-        renderSchedule(); // Gambar ulang kotak jam
+        const response = await fetch('ambil_data.php');
+        bookings = await response.json(); 
+        renderSchedule(); 
     } catch (e) {
         console.error('Gagal memuat data dari database:', e);
     }
@@ -56,14 +56,34 @@ async function saveToDatabase(time, name) {
         const result = await response.json();
         
         if (result.status === "success") {
-            console.log('Berhasil simpan ke MySQL');
-            loadBookings(); // Refresh data biar yang lain tahu slot sudah terisi
+            loadBookings(); 
             hideModal();
         } else {
             alert('Gagal simpan: ' + result.message);
         }
     } catch (e) {
         console.error('Koneksi server bermasalah:', e);
+    }
+}
+
+/**
+ * MENGHAPUS SEMUA DATA (RESET)
+ */
+async function resetAllBookings() {
+    if (confirm('⚠️ Hapus semua booking? Data yang sudah dihapus tidak bisa dikembalikan!')) {
+        try {
+            const response = await fetch('reset.php');
+            const result = await response.json();
+            
+            if (result.status === "success") {
+                alert(result.message);
+                loadBookings(); // Refresh grid agar jadi kosong (hijau) lagi
+            } else {
+                alert("Gagal reset: " + result.message);
+            }
+        } catch (e) {
+            console.error('Error saat reset:', e);
+        }
     }
 }
 
@@ -114,24 +134,34 @@ function confirmBooking() {
     }
 
     if (currentBookingSlot) {
-        // Panggil fungsi simpan ke Database
         saveToDatabase(currentBookingSlot, name);
     }
 }
 
 // ========== EVENT LISTENERS ==========
 document.addEventListener('DOMContentLoaded', () => {
+    // Tombol Konfirmasi di Modal
     confirmBtn.addEventListener('click', confirmBooking);
+    
+    // Tombol Batal di Modal
     cancelBtn.addEventListener('click', hideModal);
     
+    // Tombol Reset (Pastikan di HTML ID-nya adalah resetBtn)
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetAllBookings);
+    }
+    
+    // Klik di luar modal untuk tutup
     modal.addEventListener('click', (e) => {
         if (e.target === modal) hideModal();
     });
 
+    // Support tombol Enter pada input nama
     customerNameInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') confirmBooking();
     });
 
-    // Load data pertama kali dari database
+    // Ambil data pertama kali
     loadBookings();
 });
