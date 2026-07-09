@@ -27,6 +27,7 @@ class CourtController extends Controller
             'floor_type' => 'required|string|max:255',
             'price_per_hour' => 'required|numeric|min:0',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'location' => 'nullable|string|max:500',
         ]);
 
         $data = $request->all();
@@ -57,6 +58,7 @@ class CourtController extends Controller
             'floor_type' => 'required|string|max:255',
             'price_per_hour' => 'required|numeric|min:0',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'location' => 'nullable|string|max:500',
         ]);
 
         $data = $request->all();

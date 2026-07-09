@@ -24,6 +24,12 @@
                         <div>
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ $court->name }}</h3>
                             <p class="text-sm text-gray-500 dark:text-gray-400">{{ $court->floor_type }}</p>
+                            @if($court->location)
+                                <p class="text-sm text-gray-500 dark:text-gray-400 flex items-start gap-1 mt-1">
+                                    <svg class="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    {{ $court->location }}
+                                </p>
+                            @endif
                             <p class="text-blue-600 dark:text-blue-400 font-semibold mt-1">Rp {{ number_format($court->price_per_hour, 0, ',', '.') }} / jam</p>
                         </div>
                     </div>

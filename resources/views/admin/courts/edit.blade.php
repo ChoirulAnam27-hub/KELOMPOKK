@@ -38,6 +38,13 @@
                             <x-input-error :messages="$errors->get('price_per_hour')" class="mt-2" />
                         </div>
 
+                        <div>
+                            <x-input-label for="location" :value="__('Lokasi / Alamat')" />
+                            <x-text-input id="location" class="block mt-1 w-full" type="text" name="location" :value="old('location', $court->location)" placeholder="Cth: Jl. Raya Futsal No. 10, Semarang" />
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Masukkan alamat lengkap lokasi lapangan (opsional)</p>
+                            <x-input-error :messages="$errors->get('location')" class="mt-2" />
+                        </div>
+
                         <!-- Foto Lapangan -->
                         <div>
                             <x-input-label for="photo" :value="__('Foto Lapangan')" />

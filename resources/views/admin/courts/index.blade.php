@@ -40,6 +40,7 @@
                                         <th scope="col" class="px-6 py-3">Nama Lapangan</th>
                                         <th scope="col" class="px-6 py-3">Jenis Lantai</th>
                                         <th scope="col" class="px-6 py-3">Harga / Jam</th>
+                                        <th scope="col" class="px-6 py-3">Lokasi</th>
                                         <th scope="col" class="px-6 py-3">Aksi</th>
                                     </tr>
                                 </thead>
@@ -61,6 +62,13 @@
                                             </td>
                                             <td class="px-6 py-4">
                                                 Rp {{ number_format($court->price_per_hour, 0, ',', '.') }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                @if($court->location)
+                                                    <span class="text-sm text-gray-700 dark:text-gray-300">{{ $court->location }}</span>
+                                                @else
+                                                    <span class="text-xs text-gray-400 italic">Belum diisi</span>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 flex gap-4">
                                                 <a href="{{ route('admin.courts.edit', $court->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 underline">Edit</a>
