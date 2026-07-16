@@ -12,7 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
         h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
 
         /* ===== ROOT VARIABLES ===== */
@@ -34,7 +34,6 @@
         .hero-section {
             position: relative;
             min-height: 100vh;
-            overflow: hidden;
             background-color: var(--dark-bg);
         }
         .hero-bg {
@@ -729,8 +728,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="brand-text">FutsalPro</div>
-                        <div class="brand-sub">Futsal Sport & Leisure</div>
+                        <div class="brand-text">JustFutsal</div>
+                        <div class="brand-sub">Futsal Booking Pro</div>
                     </div>
                 </a>
 
@@ -769,8 +768,8 @@
                 <div class="hero-grid">
                     <!-- Left: Text -->
                     <div class="hero-text anim-fade-up">
-                        <h1>Boking Futsal Lebih Mudah</h1>
-                        <p>Tempat futsal terbaik di kotamu. Booking online, pilih jadwal, dan mainkan pertandingan terbaikmu.</p>
+                        <h1>Booking Futsal Lebih Mudah</h1>
+                        <p>Tempat futsal terbaik di kota Semarang. Booking online, pilih jadwal, dan mainkan pertandingan terbaikmu.</p>
                         <a href="#courts" class="btn-outline">
                             Info lebih banyak
                             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
